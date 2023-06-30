@@ -31,10 +31,6 @@ description_of_published_assets = "test"
 author_of_published_assets = "test"
 
 
-
-
-
-
 with open("./Vault.sol", "r") as file:
     simple_storage_file = file.read()
 
