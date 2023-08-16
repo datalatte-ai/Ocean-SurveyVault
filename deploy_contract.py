@@ -214,6 +214,7 @@ DDO = {
 
 DDO["id"] = "did:op:" + hashlib.sha256((w3.toChecksumAddress(nft_address) + str(DDO["chainId"])).encode()).hexdigest()
 encryptedFiles = DataEncryptor.encrypt(objects_to_encrypt=assetUrl, provider_uri= oceanProviderUrl, chain_id=DDO["chainId"])
+DDO["services"][0]["files"] = encryptedFiles.text
 
 _, proof = validate_ddo(DDO)
 
@@ -226,7 +227,6 @@ proof = (
 
 ddo_string = json.dumps(DDO, separators=(",", ":"))
 metadataHash = hashlib.sha256(ddo_string.encode("utf-8")).hexdigest()
-DDO["services"][0]["files"] = encryptedFiles.text
 encryptedDDO = DataEncryptor.encrypt(objects_to_encrypt=ddo_string.encode("utf-8"), provider_uri= oceanProviderUrl, chain_id=DDO["chainId"])
 
 with open("ERC721Abi.json") as f:
